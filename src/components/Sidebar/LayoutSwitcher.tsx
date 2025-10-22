@@ -33,10 +33,10 @@ export default function LayoutSwitcher({ collapse }: { collapse: boolean }) {
             'rounded-md absolute top-0 left-0 inset-0 transition-transform shadow-sm',
             collapse ? 'w-full h-1/2' : 'w-1/2 h-full',
             !enableSingleColumnLayout
-              ? 'translate-x-0 bg-background'
+              ? 'translate-x-0 bg-surface-background'
               : collapse
-                ? 'translate-y-full bg-surface-background'
-                : 'translate-x-full bg-surface-background'
+                ? 'translate-y-full bg-background'
+                : 'translate-x-full bg-background'
           )}
         />
       </div>
