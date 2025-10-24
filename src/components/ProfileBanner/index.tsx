@@ -28,7 +28,7 @@ export default function ProfileBanner({
       image={{ url: bannerUrl, pubkey }}
       alt={`${pubkey} banner`}
       className={cn('rounded-none', className)}
-      onError={() => setBannerUrl(defaultBanner)}
+      errorPlaceholder={defaultBanner}
     />
   )
 }

@@ -95,14 +95,14 @@ export default function Image({
             <BlurHashCanvas
               blurHash={blurHash}
               className={cn(
-                'absolute inset-0 transition-opacity duration-500 rounded-lg',
+                'absolute inset-0 transition-opacity rounded-lg',
                 isLoading ? 'opacity-100' : 'opacity-0'
               )}
             />
           ) : (
             <Skeleton
               className={cn(
-                'absolute inset-0 transition-opacity duration-500 rounded-lg',
+                'absolute inset-0 transition-opacity rounded-lg',
                 isLoading ? 'opacity-100' : 'opacity-0'
               )}
             />
@@ -115,28 +115,34 @@ export default function Image({
           alt={alt}
           decoding="async"
           loading="lazy"
+          {...props}
           onLoad={handleLoad}
           onError={handleError}
-          className={cn(
-            'object-cover rounded-lg w-full h-full transition-opacity duration-500',
-            className
-          )}
+          className={cn('object-cover rounded-lg w-full h-full transition-opacity', className)}
           width={dim?.width}
           height={dim?.height}
-          {...props}
         />
       )}
-      {hasError && (
-        <div
-          className={cn(
-            'object-cover flex flex-col items-center justify-center w-full h-full bg-muted',
-            className,
-            classNames.errorPlaceholder
-          )}
-        >
-          {errorPlaceholder}
-        </div>
-      )}
+      {hasError &&
+        (typeof errorPlaceholder === 'string' ? (
+          <img
+            src={errorPlaceholder}
+            alt={alt}
+            decoding="async"
+            loading="lazy"
+            className={cn('object-cover rounded-lg w-full h-full transition-opacity', className)}
+          />
+        ) : (
+          <div
+            className={cn(
+              'object-cover flex flex-col items-center justify-center w-full h-full bg-muted',
+              className,
+              classNames.errorPlaceholder
+            )}
+          >
+            {errorPlaceholder}
+          </div>
+        ))}
     </div>
   )
 }
